@@ -1,28 +1,135 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
+\graphicspath{figures}
 
-\usetheme{Copenhagen}
-\usecolortheme{default}
+\usepackage{tabu}
+\usepackage{array}
+\newcolumntype{!}{>{\global\let\currentrowstyle\relax}}
+\newcolumntype{^}{>{\currentrowstyle}}
+\newcommand{\rowstyle}[1]{\gdef\currentrowstyle{#1}%
+  #1\ignorespaces
+}
+\usepackage{booktabs}
 
-%------------------------------------------------------------
-%This block of code defines the information to appear in the
-%Title page
-\title{Introduction to vim}
+\usepackage{xparse}
 
-\author[Peleg Sapir]{Peleg Sapir}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\definecolor{xblue}{HTML}{4268BD}
+\definecolor{xred}{HTML}{BD4242}
+\definecolor{xgreen}{HTML}{52B256}
+\definecolor{xpurple}{HTML}{7F52B2}
+\definecolor{xorange}{HTML}{B93F0B}
+\definecolor{vimgreen}{HTML}{019833}
+\definecolor{vimgray}{HTML}{CCCCCC}
 
-\institute[exocad GmbH]{
-  \inst{1}
-	exocad GmbH
+\setlength{\parskip}{1em}
+
+\mode<presentation>{
+	\usetheme{Copenhagen}
+	\setbeamercolor{title}{fg=white}
+	\setbeamercolor{structure}{fg=vimgreen}
+	\setbeamercolor*{palette quaternary}{fg=black,bg=vimgray}
 }
 
-\date[vim 2021]{August 26, 2021}
+%------------------------------------------------------------
 
-\AtBeginSection[]{
-  \begin{frame}
-    \frametitle{Table of Contents}
-    \tableofcontents[currentsection]
-  \end{frame}
+\title{Introduction to vim}
+\author{Peleg Sapir}
+\date{August 26, 2021}
+
+%------------------------------------------------------------
+
+\makeatletter
+\setbeamertemplate{title page}{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+		\begin{picture}(0,0)
+			\put(60,10){\makebox(0,0)[rt]{\includegraphics[scale=0.2]{figures/cover/cover.pdf}}}
+		\end{picture}
+		\vskip7em
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%
+    \end{beamercolorbox}%
+    \vskip-2em\par
+    \begin{beamercolorbox}[sep=8pt,center]{author}
+      \usebeamerfont{author}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    % -----------------------
+    \begin{beamercolorbox}[sep=8pt,center]{author}
+      \usebeamerfont{author}Peleg Sapir
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center]{institute}
+      \usebeamerfont{institute}exocad GmbH
+    \end{beamercolorbox}
+    % ------------------------
+    \begin{beamercolorbox}[sep=8pt,center]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+}
+\makeatother
+
+%------------------------------------------------------------
+
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc, math, shapes, arrows, decorations.pathreplacing, decorations.text}
+\tikzset{
+	key/.style={draw=black, thick, rounded corners=0.5mm, fill=vimgray, inner sep=0pt, minimum width=5mm, minimum height=5mm},
+	grammer/.style={draw=#1, very thick, fill=#1, fill opacity=0.2, text=#1, text opacity=1, minimum height=7.5mm},
+	rep/.style={grammer={xblue}, rounded corners},
+	opr/.style={grammer={xred}},
+	mtn/.style={grammer={xgreen!80!black}},
+	cmd/.style={grammer={xpurple}},
+}
+
+\newcommand{\key}[1]{\tikz[baseline, yshift=0.75ex]{\node[key] {#1}}}
+
+\newcommand{\keys}[1]{
+	\tikz[baseline, node distance=1mm]{
+		\node[inner sep=0pt, outer sep=0pt] (0) at (0,0) {};
+		\foreach \x [count=\xi] in {#1}{
+			\pgfmathsetmacro{\xip}{\xi-1}
+			\node[key, right=of \xip] (\xi) {\x};
+		}
+	}
+}
+
+\newcommand{\ruleA}[2]{
+	\tikz[baseline, node distance=1mm] {
+		\node[opr] (opr) {#1};
+		\node[mtn, right=of opr] (mtn) {#2};
+	}
+}
+\newcommand{\ruleB}[3]{
+	\tikz[baseline] {
+		\node[rep] (rep) {#1};
+		\node[opr, right=of rep, xshift=-3mm] (opr) {#2};
+		\node[mtn, right=of opr] (mtn) {#3};
+	}
+}
+
+%------------------------------------------------------------
+
+\usepackage[most]{tcolorbox}
+\newenvironment{pexample}{
+  \begin{tcolorbox}[colback=vimgray!20, colframe=vimgreen, coltitle=white, fonttitle=\bfseries, title=Example]
+}
+{
+  \end{tcolorbox}
 }
 
 %------------------------------------------------------------
@@ -31,7 +138,53 @@
 \frame{\titlepage}
 
 \begin{frame}
-	\frametitle{Test}
-	Test
+	\frametitle{Vim Modes}
+	Vim has three \textbf{modes}:
+
+	\tabulinesep=1.2mm
+	\centering
+	\begin{tabu}[H]{!l^l^l}
+		\toprule
+		\rowstyle{\bfseries}
+		Name & Function & Key(s)\\
+		\midrule
+		Normal & navigation and text editing & \key{Esc} \\
+		Insert & inserting text & \key{i} \\
+		Normal & highlighting text/rows/blocks & \key{v}/\key{V}/\key{Ctrl}+\key{v} \\
+		\bottomrule
+	\end{tabu}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Vim Grammer}
+	Generaly speaking, vim commands can be structure in different forms (here refered to as "rules" (CITE)).
+
+	The most simple rule is
+
+	\vspace{-5mm}
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[node distance=0mm]
+			\node[cmd] (cmd) {command};
+			\node[right=of cmd] (eq) {=};
+			\node[opr, right =of eq] (opr) {operator};
+			\node[mtn, right =of opr, xshift=3mm] (mtn) {motion(s)};
+		\end{tikzpicture}
+	\end{figure}
+
+	\vspace{-3mm}
+	\begin{pexample}
+		\tabulinesep=1.2mm
+		\centering
+		\begin{tabu}[H]{!l^l^l}
+			\toprule
+			\rowstyle{\bfseries}
+			Command & Syntax & Keys \\
+			\midrule
+			Delete word & \ruleA{del}{word} & \keys{d,w} \\
+			Copy until 'A' & \ruleA{copy}{until 'A'} & \keys{y,f,A} \\
+			\bottomrule
+		\end{tabu}
+	\end{pexample}
 \end{frame}
 \end{document}
