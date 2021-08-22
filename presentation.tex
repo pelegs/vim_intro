@@ -88,7 +88,7 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning, calc, math, shapes, arrows, decorations.pathreplacing, decorations.text}
 \tikzset{
-	key/.style={draw=black, thick, rounded corners=0.5mm, fill=vimgray, inner sep=0pt, minimum width=5mm, minimum height=5mm},
+	key/.style={draw=black, thick, rounded corners=0.5mm, fill=vimgray, inner sep=1mm, minimum width=5mm, minimum height=5mm},
 	grammer/.style={draw=#1, very thick, fill=#1, fill opacity=0.2, text=#1, text opacity=1, minimum height=7.5mm},
 	rep/.style={grammer={xblue}, rounded corners},
 	opr/.style={grammer={xred}},
@@ -160,19 +160,11 @@
 	Generaly speaking, vim commands can be structure in different forms (here refered to as "rules" (CITE)).
 
 	The most simple rule is
+	\[
+	\vimcmd{cmd,command} = \vimcmd{opr,operator}\ \vimcmd{mtn,motion(s)}
+	\]
 
 	\vspace{-5mm}
-	\begin{figure}[H]
-		\centering
-		\begin{tikzpicture}[node distance=0mm]
-			\node[cmd] (cmd) {command};
-			\node[right=of cmd] (eq) {=};
-			\node[opr, right =of eq] (opr) {operator};
-			\node[mtn, right =of opr, xshift=3mm] (mtn) {motion(s)};
-		\end{tikzpicture}
-	\end{figure}
-
-	\vspace{-3mm}
 	\begin{pexample}
 		\tabulinesep=1.2mm
 		\centering
@@ -191,18 +183,9 @@
 \begin{frame}
 	\frametitle{Vim Grammer}
 	Operators and motions can be preceded by repetitions, i.e.
-	
-	\begin{figure}[H]
-		\centering
-		\begin{tikzpicture}[node distance=1mm]
-			\node[cmd] (cmd) {command};
-			\node[right=of cmd] (eq) {=};
-			\node[rep, right=of eq] (rep1) {n};
-			\node[opr, right=of rep1] (opr) {operator};
-			\node[rep, right=of opr, xshift=3mm] (rep2) {m};
-			\node[mtn, right=of rep2] (mtn) {motion(s)};
-		\end{tikzpicture}
-	\end{figure}
+	\[
+		\vimcmd{cmd,command} = \vimcmd{rep,n;opr,operator}\ \vimcmd{rep,m;mtn,motion(s)}
+	\]
 	
 	\vspace{-3mm}
 	\begin{pexample}
@@ -218,10 +201,5 @@
 			\bottomrule
 		\end{tabu}
 	\end{pexample}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Test}
-	\vimcmd{rep,1;opr,2}
 \end{frame}
 \end{document}
