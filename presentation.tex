@@ -36,6 +36,11 @@
 	\setbeamercolor*{palette quaternary}{fg=black,bg=vimgray}
 }
 
+\newcommand{\aleft}{$\leftarrow$}
+\newcommand{\adown}{$\downarrow$}
+\newcommand{\aup}{$\uparrow$}
+\newcommand{\aright}{$\rightarrow$}
+
 %------------------------------------------------------------
 
 \title{Introduction to vim}
@@ -209,6 +214,8 @@
 
 \begin{frame}
 	\frametitle{List of Operators}
+	Main vim operator keys:
+
 	\begin{table}
 		\centering
 		\renewcommand{\arraystretch}{1.4}
@@ -221,6 +228,31 @@
 			\key{y} & copy   & \key{c} & change (delete + insert) \\
 			\key{d} & delete & \key{x} & delete single\\
 			\key{p} & paste  & \key{P} & paste before \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{List of Operators}
+	Main vim motion (navigation) keys:
+
+	\begin{table}
+		\centering
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{>{\rowmac}l>{\rowmac}l|>{\rowmac}l>{\rowmac}l}
+			\toprule
+			\setrow{\bfseries}
+			Key & Func. & Key & Func.
+			\clearrow \\
+			\midrule
+			\key{h}/\key{\aleft} & left & \key{j}/\key{\adown} & down \\
+			\key{k}/\key{\aup} & up & \key{l}/\key{\aright} & right \\
+			\key{\^{}} & start of line & \key{\$} & end of line \\
+			\key{w} & next word & \key{b} & beginning of word \\
+			\key{e}/\key{g}\key{e} & end of word / prev & \key{n} & next find \\
+			\key{f}\key{$\alpha$} & next $\alpha$ & \key{F}\key{$\alpha$} & prev $\alpha$ \\
+			\key{t}\key{$\alpha$} & before next $\alpha$ & \key{T}\key{$\alpha$} & after prev $\alpha$ \\
 			\bottomrule
 		\end{tabular}
 	\end{table}
