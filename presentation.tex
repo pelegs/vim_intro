@@ -9,6 +9,10 @@
 \newcommand{\rowstyle}[1]{\gdef\currentrowstyle{#1}%
   #1\ignorespaces
 }
+\newcommand\setrow[1]{\gdef\rowmac{#1}#1\ignorespaces}
+\newcommand\clearrow{\global\let\rowmac\relax}
+\clearrow
+
 \usepackage{booktabs}
 
 \usepackage{xparse}
@@ -202,4 +206,24 @@
 		\end{tabu}
 	\end{pexample}
 \end{frame}
+
+\begin{frame}
+	\frametitle{List of Operators}
+	\begin{table}
+		\centering
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{>{\rowmac}l>{\rowmac}l|>{\rowmac}l>{\rowmac}l}
+			\toprule
+			\setrow{\bfseries}
+			Key & Func. & Key & Func.
+			\clearrow \\
+			\midrule
+			\key{y} & copy   & \key{c} & cut (delete + insert) \\
+			\key{d} & delete & \key{x} & delete single\\
+			\key{p} & paste  & \key{P} & paste before \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{frame}
+
 \end{document}

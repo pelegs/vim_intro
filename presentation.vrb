@@ -1,0 +1,12 @@
+\frametitle{List of Operators}
+	\begin{table}
+		\centering
+		\begin{tabu}{ccc|c}
+			\toprule
+			Key & Func. & Key & Func. \\
+			\midrule
+			\key{y} & copy & \key{p} & paste \\
+			\key{c} & cut  & \key{d} & delete \\
+			\bottomrule
+		\end{tabu}
+	\end{table}
