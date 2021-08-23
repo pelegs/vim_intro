@@ -228,14 +228,15 @@
 			\key{y} & copy   & \key{c} & change (delete + insert) \\
 			\key{d} & delete & \key{x} & delete single\\
 			\key{p} & paste  & \key{P} & paste before \\
-			\key{u} & undo   & \key{ctrl}\key{r} & redo \\
+			\key{u} & undo   & \key{Ctrl}+\key{r} & redo \\
+			\key{.} & repeat action & \key{;} & repat motion \\
 			\bottomrule
 		\end{tabular}
 	\end{table}
 \end{frame}
 
 \begin{frame}
-	\frametitle{List of Operators}
+	\frametitle{List of Motions}
 	Main vim motion (navigation) keys:
 
 	\begin{table}
@@ -247,11 +248,9 @@
 			Key & Func. & Key & Func.
 			\clearrow \\
 			\midrule
-			\key{h}/\key{\aleft} & left & \key{j}/\key{\adown} & down \\
-			\key{k}/\key{\aup} & up & \key{l}/\key{\aright} & right \\
-			\key{\^{}} & start of line & \key{\$} & end of line \\
 			\key{w} & next word & \key{b} & beginning of word \\
 			\key{e}/\key{g}\key{e} & end of word / prev & \key{n} & next find \\
+			\key{n} & next find & \key{N} & prev find \\
 			\key{f}\key{$\alpha$} & next $\alpha$ & \key{F}\key{$\alpha$} & prev $\alpha$ \\
 			\key{t}\key{$\alpha$} & before next $\alpha$ & \key{T}\key{$\alpha$} & after prev $\alpha$ \\
 			\bottomrule
@@ -259,4 +258,29 @@
 	\end{table}
 \end{frame}
 
+\begin{frame}
+	\frametitle{List of Motions}
+	Motions that aren't relevant to operators and repetitions:
+	
+	\vspace{-5mm}
+	\begin{table}
+		\centering
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{>{\rowmac}l>{\rowmac}l|>{\rowmac}l>{\rowmac}l}
+			\toprule
+			\setrow{\bfseries}
+			Key & Func. & Key & Func.
+			\clearrow \\
+			\midrule
+			\key{h}/\key{\aleft} & left & \key{j}/\key{\adown} & down \\
+			\key{k}/\key{\aup} & up & \key{l}/\key{\aright} & right \\
+			\key{0} & start of line & \key{\$} & end of line \\
+			\key{\^{}} & start of line (text) & \key{\%} & matched paranthesis \\
+			\key{H} & top of view & \key{L} & bottom of view \\
+			\key{M} & middle of view & \key{L} & bottom of view \\
+			\key{Ctrl}+\key{y} & scroll screen up & \key{Ctrl}+\key{e} & scroll screen down \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{frame}
 \end{document}
