@@ -103,6 +103,7 @@
 	opr/.style={grammer={xred}},
 	mtn/.style={grammer={xgreen!80!black}},
 	cmd/.style={grammer={xpurple}},
+	mdf/.style={grammer={xorange}},
 }
 
 \newcommand{\key}[1]{\tikz[baseline, yshift=0.75ex]{\node[key] {#1}}}
@@ -124,7 +125,7 @@
 	\foreachitem\x\in\list[]{
 		\setsepchar{,}
 		\readlist*\word{\x}
-		\tikz[baseline]{
+		\tikz[baseline, overlay]{
 			\def\arg{\word[1]}
 			\node[\arg] {\word[2]}
 		}
@@ -145,6 +146,7 @@
 
 \begin{document}
 \frame{\titlepage}
+\renewcommand{\arraystretch}{1.4}
 
 \begin{frame}
 	\frametitle{Vim Modes}
@@ -157,7 +159,7 @@
 		\rowstyle{\bfseries}
 		Name & Function & Key(s)\\
 		\midrule
-		Normal & navigation and text editing & \key{Esc} \\
+		Normal & navigation and text editing & Default/\key{Esc} \\
 		Insert & inserting text & \key{i} \\
 		Normal & highlighting text/rows/blocks & \key{v}/\key{V}/\key{Ctrl}+\key{v} \\
 		\bottomrule
@@ -218,7 +220,6 @@
 
 	\begin{table}
 		\centering
-		\renewcommand{\arraystretch}{1.4}
 		\begin{tabular}{>{\rowmac}l>{\rowmac}l|>{\rowmac}l>{\rowmac}l}
 			\toprule
 			\setrow{\bfseries}
@@ -241,7 +242,6 @@
 
 	\begin{table}
 		\centering
-		\renewcommand{\arraystretch}{1.4}
 		\begin{tabular}{>{\rowmac}l>{\rowmac}l|>{\rowmac}l>{\rowmac}l}
 			\toprule
 			\setrow{\bfseries}
@@ -260,12 +260,11 @@
 
 \begin{frame}
 	\frametitle{List of Motions}
-	Motions that aren't relevant to operators and repetitions:
+	Some motions aren't actually relevant to operators and repetitions:
 	
 	\vspace{-5mm}
 	\begin{table}
 		\centering
-		\renewcommand{\arraystretch}{1.4}
 		\begin{tabular}{>{\rowmac}l>{\rowmac}l|>{\rowmac}l>{\rowmac}l}
 			\toprule
 			\setrow{\bfseries}
@@ -282,5 +281,36 @@
 			\bottomrule
 		\end{tabular}
 	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Modifiers}
+	The following two keys are \textbf{Modifiers}:
+
+	\centering
+	\begin{tabular}{>{\rowmac}l>{\rowmac}l}
+		\toprule
+		\setrow{\bfseries}
+		Key & Meaning
+		\clearrow \\
+		\midrule
+		\key{i} & Inside an object\\
+		\key{a} & Around an object\\
+		\bottomrule
+	\end{tabular}
+
+	\begin{pexample}
+		\tabulinesep=0.7mm
+		\centering
+		\begin{tabu}[H]{!l^l^l}
+			\toprule
+			\rowstyle{\bfseries}
+			Command & Syntax & Keys \\
+			\midrule
+			Copy around '[]' & \vimcmd{opr,copy;mdf,around;mtn,[]}& \keys{y,a,[} \\
+			Delete inside `\{\}` & \vimcmd{opr,del;mdf,inside;mtn,\{\}} & \keys{d,i,\{} \\
+			\bottomrule
+		\end{tabu}
+	\end{pexample}
 \end{frame}
 \end{document}
