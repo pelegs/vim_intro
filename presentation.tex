@@ -125,7 +125,7 @@
 	\foreachitem\x\in\list[]{
 		\setsepchar{,}
 		\readlist*\word{\x}
-		\tikz[baseline, overlay]{
+		\tikz[baseline]{
 			\def\arg{\word[1]}
 			\node[\arg] {\word[2]}
 		}
@@ -175,7 +175,7 @@
 	\vimcmd{cmd,command} = \vimcmd{opr,operator}\ \vimcmd{mtn,motion(s)}
 	\]
 
-	\vspace{-5mm}
+	\vspace{-7mm}
 	\begin{pexample}
 		\tabulinesep=1.2mm
 		\centering
@@ -299,18 +299,47 @@
 		\bottomrule
 	\end{tabular}
 
+	\vspace{-2mm}
 	\begin{pexample}
 		\tabulinesep=0.7mm
 		\centering
-		\begin{tabu}[H]{!l^l^l}
+		\begin{tabu}[H]{!l^l}
 			\toprule
 			\rowstyle{\bfseries}
-			Command & Syntax & Keys \\
+			Command & Keys \\
 			\midrule
-			Copy around '[]' & \vimcmd{opr,copy;mdf,around;mtn,[]}& \keys{y,a,[} \\
-			Delete inside `\{\}` & \vimcmd{opr,del;mdf,inside;mtn,\{\}} & \keys{d,i,\{} \\
+			Copy around '[]' & \keys{y,a,[} \\
+			Delete inside `\{\}` & \keys{d,i,\{} \\
 			\bottomrule
 		\end{tabu}
 	\end{pexample}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Marks}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Macros}
+	A \textbf{macro} is a recording of a set of operations, which can be repeated as many times as needed.
+
+	A macro \textit{a} is recorded by typing
+	
+	\centering
+	\keys{q,a} [set of operations] \keys{q}
+	\flushleft
+
+	A macro \textit{a} is called by
+
+	\centering
+	\keys{@,a}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Find, Search \& Replace, Regex}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Splits}
 \end{frame}
 \end{document}
