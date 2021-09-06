@@ -98,7 +98,7 @@
 
 \usepackage{pgfplots}
 \usepackage{tikz}
-\usetikzlibrary{positioning, calc, math, shapes, arrows, decorations.pathreplacing, decorations.text}
+\usetikzlibrary{positioning, calc, math, shapes, arrows, decorations.pathreplacing, decorations.text, tikzmark}
 \tikzset{
 	key/.style={draw=black, thick, rounded corners=0.5mm, fill=vimgray, inner sep=1mm, minimum width=5mm, minimum height=5mm},
 	grammer/.style={draw=#1, very thick, fill=#1, fill opacity=0.2, text=#1, text opacity=1, minimum height=7.5mm},
@@ -108,6 +108,8 @@
 	cmd/.style={grammer={xpurple}},
 	mdf/.style={grammer={xorange}},
 }
+
+\renewcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
 
 \newcommand{\key}[1]{\tikz[baseline, yshift=0.75ex]{\node[key] {#1}}}
 
@@ -176,9 +178,15 @@
 			Save and exit & \keys{:,w,q,\return}\\
 			Exit without save & \keys{:,q,!,\return}\\
 			Save and override & \keys{:,w,!,\return}\\
+			Command history & \keys{\tikzmark{q}q,:\tikzmark{c},\return}\\
 			\bottomrule
 		\end{tabu}
 	\end{table}
+
+	\begin{tikzpicture}[overlay, remember picture, node distance=1mm]
+		\draw[thick, vimgreen] ($(q.north west)+(-2mm,1mm)$) rectangle ($(c.south east)+(-2.5mm,0.5mm)$);
+		\node[vimgreen, below=of q, xshift=2mm] (txt) {Just to confuse};
+	\end{tikzpicture}
 \end{frame}
 
 \begin{frame}
