@@ -27,6 +27,9 @@
 \definecolor{vimgreen}{HTML}{019833}
 \definecolor{vimgray}{HTML}{CCCCCC}
 
+\usepackage{keystroke}
+\usepackage{menukeys}
+
 \setlength{\parskip}{1em}
 
 \mode<presentation>{
@@ -108,7 +111,7 @@
 
 \newcommand{\key}[1]{\tikz[baseline, yshift=0.75ex]{\node[key] {#1}}}
 
-\newcommand{\keys}[1]{
+\renewcommand{\keys}[1]{
 	\tikz[baseline, node distance=1mm]{
 		\node[inner sep=0pt, outer sep=0pt] (0) at (0,0) {};
 		\foreach \x [count=\xi] in {#1}{
@@ -149,9 +152,40 @@
 \renewcommand{\arraystretch}{1.4}
 
 \begin{frame}
+	\frametitle{The Most Important Command}
+	Before we start, let's settle down the age-old question:
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3]{figures/exit/exitsign.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{The Most Important Command}
+	The most common exit and save commands:
+	\begin{table}
+		\centering
+		\begin{tabu}[H]{!l^l^l}
+			\toprule
+			\rowstyle{\bfseries}
+			Command & Keys \\
+			\midrule
+			Simple exit & \keys{:,q,\return}\\
+			Save & \keys{:,w,\return}\\
+			Save and exit & \keys{:,w,q,\return}\\
+			Exit without save & \keys{:,q,!,\return}\\
+			Save and override & \keys{:,w,!,\return}\\
+			\bottomrule
+		\end{tabu}
+	\end{table}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Vim Modes}
 	Vim has three \textbf{modes}:
 
+	\vspace{5mm}
 	\tabulinesep=1.2mm
 	\centering
 	\begin{tabu}[H]{!l^l^l}
@@ -316,7 +350,22 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{The Command Buffer}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Marks}
+	Points in a file can be marked for later use. There are 52 possible custom marks: all lowercase letters + all uppercase letters.
+
+	Adding a mark \textit{a} is done by
+
+	\centering
+	\keys{m,a}
+	\flushleft
+
+	Navigating to a mark \textit{a} is done by \keys{`,a}.
+
+	The combination \keys{',a} will jump to the start of the line where the mark is.
 \end{frame}
 
 \begin{frame}
