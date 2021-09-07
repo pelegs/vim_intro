@@ -124,7 +124,13 @@
 	}
 }
 
-%\newcommand{command}
+\usepackage{minted}
+\newcommand{\thl}[1]{
+	\mintinline[bgcolor=vimgreen!20, escapeinside=||]{vim}{#1}
+}
+\newcommand{\tcmd}[1]{
+	\thl{:#1}
+}
 
 \usepackage{listofitems}
 \newcommand{\vimcmd}[1]{
@@ -333,7 +339,6 @@
 	\frametitle{Operators without Motions}
 	Some more operators without motions:
 	
-	\vspace{-5mm}
 	\begin{table}
 		\centering
 		\begin{tabular}{>{\rowmac}l>{\rowmac}l|>{\rowmac}l>{\rowmac}l}
@@ -341,8 +346,10 @@
 			\setrow{\bfseries}
 			Key & Func. & Key & Func.
 			\clearrow \\
+			\midrule
 			\multicolumn{4}{c}{\color{vimgreen}\textbf{Normal mode}}\\
 			\key{u} & undo & \key{Ctrl}+\key{r} & redo\\
+			\keys{d,d} & delete line & \keys{c,c} replace line\\
 			\bottomrule
 		\end{tabular}
 	\end{table}
@@ -350,7 +357,7 @@
 
 \begin{frame}
 	\frametitle{Motions without Operators}
-	...and some motions aren't actually relevant to operators and repetitions:
+	Some motions aren't actually relevant to operators and repetitions:
 	
 	\vspace{-5mm}
 	\begin{table}
@@ -434,6 +441,10 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Registers}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Find, Search \& Replace, Regex}
 	Searching for a string is done by pressing \key{/} (\key{?} for backwards search), and entering a regex-like search query.
 
@@ -446,7 +457,28 @@
 
 \begin{frame}
 	\frametitle{Find, Search \& Replace, Regex}
-	Replacing an expression is done via 
+	Replacing an expression is done by \tcmd{s}:
+	\begin{itemize}
+		\item \tcmd{s/foo/bar/g} changes each \thl{foo} to \thl{bar} in current line.
+		\item \tcmd{\%s/foo/bar/g} change globally.
+		\item \tcmd{'<,'>s/foo/bar/g} in visual mode: change in selected lines.
+		\item \tcmd{'<,'>s/foo/bar/g} in visual mode: change in selected lines.
+		\item \tcmd{.,\$s/foo/bar/g} change from here to end of file.
+		\item \tcmd{.,+Ns/foo/bar/g} change current line + N more lines.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Find, Search \& Replace, Regex}
+	continuing:
+
+	\begin{itemize}
+		\item \tcmd{\%s/foo/bar/gc} change with confirmation per each change.
+		\item \tcmd{\%s/foo/bar/gci} change case insensitive.
+		\item \tcmd{g/^baz/s/foo/bar/g} change in lines starting with \hspace{-4pt}\thl{baz}.
+		\item \tcmd{s//bar/g} use last searched pattern.
+		\item \tcmd{\%s/foo/<c-r><c-w>/g} replace with the word under the cursor (\key{Ctrl}+\key{r}\ \key{Ctrl}+\key{w}).
+	\end{itemize}
 \end{frame}
 
 \begin{frame}

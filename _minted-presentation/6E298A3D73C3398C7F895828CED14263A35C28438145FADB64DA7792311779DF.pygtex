@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{p}{:}\PYGZbs{}\PYGZpc{}s\PYG{l+s+sr}{/foo/}bar/\PYG{k}{g}
+\end{Verbatim}

@@ -1,12 +1,7 @@
-\frametitle{List of Operators}
-	\begin{table}
-		\centering
-		\begin{tabu}{ccc|c}
-			\toprule
-			Key & Func. & Key & Func. \\
-			\midrule
-			\key{y} & copy & \key{p} & paste \\
-			\key{c} & cut  & \key{d} & delete \\
-			\bottomrule
-		\end{tabu}
-	\end{table}
+\frametitle{Find, Search \& Replace, Regex}
+	Replacing an expression is done by \tcmd{s}:
+	\begin{itemize}
+		\item \tcmd{s/foo/bar/g} changes each \textit{foo} to \textit{bar} in current line.
+		\item \tcmd{s/foo/bar/g} changes each \textit{foo} to \textit{bar} gloally.
+		\item \begin{minted}{vim}%this is a test\end{minted}
+	\end{itemize}
