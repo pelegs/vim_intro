@@ -124,6 +124,8 @@
 	}
 }
 
+%\newcommand{command}
+
 \usepackage{listofitems}
 \newcommand{\vimcmd}[1]{
 	\setsepchar{;}
@@ -328,6 +330,25 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Operators without Motions}
+	Some more operators without motions:
+	
+	\vspace{-5mm}
+	\begin{table}
+		\centering
+		\begin{tabular}{>{\rowmac}l>{\rowmac}l|>{\rowmac}l>{\rowmac}l}
+			\toprule
+			\setrow{\bfseries}
+			Key & Func. & Key & Func.
+			\clearrow \\
+			\multicolumn{4}{c}{\color{vimgreen}\textbf{Normal mode}}\\
+			\key{u} & undo & \key{Ctrl}+\key{r} & redo\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Motions without Operators}
 	...and some motions aren't actually relevant to operators and repetitions:
 	
@@ -424,7 +445,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Find}
+	\frametitle{Find, Search \& Replace, Regex}
+	Replacing an expression is done via 
 \end{frame}
 
 \begin{frame}
