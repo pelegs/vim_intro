@@ -469,7 +469,7 @@
 		\item \tcmd{'<,'>s/foo/bar/g} in visual mode: change in selected lines
 		\item \tcmd{'<,'>s/foo/bar/g} in visual mode: change in selected lines
 		\item \tcmd{,\$s/foo/bar/g} change from here to end of file
-		\item \tcmd{,+Ns/foo/bar/g} change current line + N more lines
+		\item \tcmd{,+Ns/foo/bar/g} change current line + \thl{N} more lines
 	\end{itemize}
 \end{frame}
 
@@ -483,7 +483,7 @@
 		\item \tcmd{g/^baz/s/foo/bar/g} change in lines starting with \hspace{-4pt}\thl{baz}
 		\item \tcmd{s//bar/g} use last searched pattern
 		\item \tcmd{\%s/foo/<c-r><c-w>/g} replace with the word under the cursor (\key{Ctrl}+\key{r}\ \key{Ctrl}+\key{w})
-		\item \tcmd{\%s/foo/<c-r>a/g} replace with the content of register \hspace{-3pt}\reg{a}
+		\item \tcmd{\%s/foo/<c-r>a/g} replace with the content of register \hspace{-6pt}\reg{a}
 		\item \tcmd{\%/foo/\\=ae/g} replace using arithmetic expression \thl{ae}
 	\end{itemize}
 \end{frame}
