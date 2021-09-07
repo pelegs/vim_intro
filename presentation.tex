@@ -14,7 +14,7 @@
 \clearrow
 
 \usepackage{booktabs}
-
+\usepackage{multirow}
 \usepackage{xparse}
 
 \usepackage{graphicx}
@@ -114,6 +114,7 @@
 \newcommand{\key}[1]{\tikz[baseline, yshift=0.75ex]{\node[key] {#1}}}
 
 \renewcommand{\keys}[1]{
+	\hspace{-7.5pt}
 	\tikz[baseline, node distance=1mm]{
 		\node[inner sep=0pt, outer sep=0pt] (0) at (0,0) {};
 		\foreach \x [count=\xi] in {#1}{
@@ -185,7 +186,7 @@
 
 	\begin{tikzpicture}[overlay, remember picture, node distance=1mm]
 		\draw[thick, vimgreen] ($(q.north west)+(-2mm,1mm)$) rectangle ($(c.south east)+(-2.5mm,0.5mm)$);
-		\node[vimgreen, below=of q, xshift=2mm] (txt) {Just to confuse};
+		\node[vimgreen, below=of q, xshift=2mm] (txt) {Just to confuse ;)};
 	\end{tikzpicture}
 \end{frame}
 
@@ -301,8 +302,34 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{List of Motions}
-	Some motions aren't actually relevant to operators and repetitions:
+	\frametitle{Operators without Motions}
+	Some operators don't need motions:
+	
+	\vspace{-5mm}
+	\begin{table}
+		\centering
+		\begin{tabular}{>{\rowmac}l>{\rowmac}l|>{\rowmac}l>{\rowmac}l}
+			\toprule
+			\setrow{\bfseries}
+			Key & Func. & Key & Func.
+			\clearrow \\
+			\midrule
+			\multicolumn{4}{c}{\textbf{\color{vimgreen}Visual mode}}\\
+			\key{U} & make uppercase & \key{u} & make lowercase\\
+			\key{\textasciitilde} & switch case & & \\
+			\midrule
+			\multicolumn{4}{c}{\color{vimgreen}\textbf{Normal mode}}\\
+			\key{ctrl}+\key{a} & increment int & \key{ctrl}+\key{x} & decrement int\\
+			\keys{g,U,$\cdots$} & make uppercase & \keys{g,u,$\cdots$} & make lowercase\\
+			\key{g,\textasciitilde,$\cdots$} & switch case & & \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Motions without Operators}
+	...and some motions aren't actually relevant to operators and repetitions:
 	
 	\vspace{-5mm}
 	\begin{table}
@@ -387,6 +414,17 @@
 
 \begin{frame}
 	\frametitle{Find, Search \& Replace, Regex}
+	Searching for a string is done by pressing \key{/} (\key{?} for backwards search), and entering a regex-like search query.
+
+	Moving between matches can be done via \key{n} for forward search, and \key{N} for back search.
+
+	The word currently under the cursor can be searched by \key{*} for a forward search, and \key{\#} for backwards search.
+
+	As with commands, the search history is searchable via \key{\aup} and \key{\adown}.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Find}
 \end{frame}
 
 \begin{frame}
