@@ -153,11 +153,11 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
 }
 
 \newcommand{\reg}[1]{
-	\mintinline[bgcolor=vimgray!50]{vim}{#1}
+	\mintinline[bgcolor=xpurple!30]{text}{#1}
 }
 
 \newcommand{\vmark}[1]{
-	\mintinline[bgcolor=blue!50!vimgray!30]{c}{#1}
+	\mintinline[bgcolor=blue!50!vimgray!30]{text}{#1}
 }
 
 \usepackage{listofitems}
@@ -552,7 +552,8 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
 		\item \reg{\%}: current file name.
 		\item \reg{:}: most recently executed command.
 		\item \reg{\#}: name of last (alternate) file (try \tcmd{h alternate-file} for more info).
-		\item \reg{=}: expression register (example: in insert mode try: \key{ctrl}+\key{r}+\key{=}, then type \thl{system('ls')} and press \key{\return}).
+		\item \reg{=}: result of given expression (example: in insert mode try: \key{ctrl}+\key{r}+\key{=}, then type \thl{system('ls')} and press \key{\return}).
+		\item \reg{/}: content of last search.
 	\end{itemize}
 \end{frame}
 
