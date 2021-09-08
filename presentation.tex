@@ -1,7 +1,23 @@
 \documentclass{beamer}
-\usepackage[utf8]{inputenc}
-\graphicspath{figures}
 
+%------------------------------------------------------------
+
+\begin{filecontents}{\jobname.bib}
+@online{positive,
+author = {Tom Cammann},
+title  = {Vim Grammar},
+date   = {2013-01-30},
+url    = {https://takac.github.io/2013/01/30/vim-grammar/}
+}
+\end{filecontents}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{\jobname.bib}
+
+%------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
 \usepackage{tabu}
 \usepackage{array}
 \newcolumntype{!}{>{\global\let\currentrowstyle\relax}}
@@ -18,6 +34,7 @@
 \usepackage{xparse}
 
 \usepackage{graphicx}
+\graphicspath{figures}
 \usepackage{colortbl}
 \definecolor{xblue}{HTML}{4268BD}
 \definecolor{xred}{HTML}{BD4242}
@@ -43,7 +60,6 @@
 \newcommand{\adown}{$\downarrow$}
 \newcommand{\aup}{$\uparrow$}
 \newcommand{\aright}{$\rightarrow$}
-
 %------------------------------------------------------------
 
 \title{Introduction to Vim}
@@ -52,6 +68,7 @@
 
 %------------------------------------------------------------
 
+\setbeamertemplate{headline}{}
 \makeatletter
 \setbeamertemplate{title page}{
   \vbox{}
@@ -254,7 +271,7 @@
 
 \begin{frame}
 	\frametitle{Vim Grammer}
-	Generaly speaking, Vim commands can be structure in different forms (here refered to as "rules" (CITE)).
+	Generaly speaking, Vim commands can be structure in different forms (here refered to as "rules"\cite{positive}).
 
 	The most simple rule is
 	\[
@@ -518,6 +535,24 @@
 
 \begin{frame}
 	\frametitle{Registers}
+	Registers hold yanked (copied) text. Similar to marks, they can be named \reg{a}-\reg{z}, but only using lowercase letters.
+
+	\keys{",a,y} will copy the selected text to the register \reg{a}, while \keys{",a,p} will paste the content of \reg{a}. All other relevant actions are possible too.
+
+	To display the content of registers \reg{a},\reg{b} and \reg{c}, use the commad \tcmd{reg a b c}.
+
+	The unnamed register \reg{"} holds the last copied/yanked text, i.e. \keys{",",p} = \keys{p}.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Registers}
+	There are four special registers:
+	\begin{itemize}
+		\item \reg{.}: last inserted text.
+		\item \reg{\%}: current file name.
+		\item \reg{:}: most recently executed command.
+		\item \reg{\#}: name of last (alternate) file (try \tcmd{h alternate-file} for more info).
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -561,9 +596,33 @@
 
 \begin{frame}
 	\frametitle{Splits}
+	A Vim buffer can be split horizontally by \tcmd{sp}, and vertically by \tcmd{vsp}. Adding a file name opens that file in the split.
+
+	Navigating between splits is done by \key{ctrl}+\key{w}+arrow.
+
+	The order of splits can be changed by \key{ctrl}+\key{w}\ \key{ctrl}+\key{r}.
+
+	Increasing a split size is done by \key{ctrl}+\key{w}+\keys{$\alpha$,+}, decreasing by \key{-} instead of \key{+}.
+
+	To make a horizontal split full width: \key{ctrl}+\key{w}+\key{\textunderscore} (\key{\textbar} for vertical split). To make splits equal size: \key{ctrl}+\key{w}+\key{=}.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Useful Links for Further Reading}
+	\frametitle{Advanced Usage}
+	More advance topics, such as: plugins, \thl{.vimrc} config, vim scripts, custom syntax highlighting and colors, context-aware typing and more - in a future presentation.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Useful Sources for Further Reading}
+	\textbf{Useful Sources}:
+	\begin{itemize}
+		\item Vim tutor: \tcmd{!vimtutor} - follow it!
+		\item Vim tips wiki: \url{https://vim.fandom.com/wiki/Vim_Tips_Wiki}{text}.
+		\item Vim homepage: \url{https://www.vim.org}{text}.
+	\end{itemize}
+
+	\textbf{Cited source}:
+
+	\printbibliography
 \end{frame}
 \end{document}
