@@ -46,7 +46,7 @@
 
 %------------------------------------------------------------
 
-\title{Introduction to vim}
+\title{Introduction to Vim}
 \author{Peleg Sapir}
 \date{August 26, 2021}
 
@@ -137,6 +137,10 @@
 	\mintinline[bgcolor=vimgray!50]{vim}{#1}
 }
 
+\newcommand{\vmark}[1]{
+	\mintinline[bgcolor=blue!50!vimgray!30]{c}{#1}
+}
+
 \usepackage{listofitems}
 \newcommand{\vimcmd}[1]{
 	\setsepchar{;}
@@ -204,6 +208,11 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Brief History}
+	Ed - Vi - Vim.
+\end{frame}
+
+\begin{frame}
 	\frametitle{Vim Modes}
 	Vim has three \textbf{modes}:
 
@@ -224,7 +233,7 @@
 
 \begin{frame}
 	\frametitle{Vim Grammer}
-	Generaly speaking, vim commands can be structure in different forms (here refered to as "rules" (CITE)).
+	Generaly speaking, Vim commands can be structure in different forms (here refered to as "rules" (CITE)).
 
 	The most simple rule is
 	\[
@@ -272,7 +281,7 @@
 
 \begin{frame}
 	\frametitle{List of Operators}
-	Main vim operator keys:
+	Main Vim operator keys:
 
 	\begin{table}
 		\centering
@@ -294,7 +303,7 @@
 
 \begin{frame}
 	\frametitle{List of Motions}
-	Main vim motion (navigation) keys:
+	Main Vim motion (navigation) keys:
 
 	\begin{table}
 		\centering
@@ -418,22 +427,63 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{The Command Buffer}
+	\frametitle{The Vim Command Line}
+	Pressing \key{:} in normal mode summons the internal Vim command line (here referred to as \textit{vcl}). Many, many different thigs can be done using this buffer - some of which will be shown later.
+
+	Any shell command can be executed via the vcl, by prepending it with '!', e.g. \tcmd{!ls} will run \thl{ls} in the shell that executed Vim.
 \end{frame}
 
 \begin{frame}
 	\frametitle{Marks}
 	Points in a file can be marked for later use. There are 52 possible custom marks: all lowercase letters + all uppercase letters.
 
-	Adding a mark \textit{a} is done by
+	Adding a mark \vmark{a} is done by
 
 	\centering
 	\keys{m,a}
 	\flushleft
 
-	Navigating to a mark \textit{a} is done by \keys{`,a}.
+	Navigating to a mark \vmark{a} is done by \keys{`,a}.
 
 	The combination \keys{',a} will jump to the start of the line where the mark is.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Marks}
+	The lowercase marks \vmark{a}-\vmark{z} exist only in currently open files (buffers), while the uppercase marks \vmark{A}-\vmark{Z} can be jumped to even in a closed file.
+
+	The command \tcmd{marks} gives a list of all marks.
+
+	Example motions and operations using marks:
+	
+	\vspace{-7mm}
+	\begin{table}
+		\centering
+		\begin{tabular}{>{\rowmac}l>{\rowmac}l|>{\rowmac}l>{\rowmac}l}
+			\toprule
+			\setrow{\bfseries}
+			Key & Function & Key & Function
+			\clearrow \\
+			\midrule
+			\keys{m,a} & set \vmark{a}  & & \\
+			\keys{',a} & go to line of \vmark{a}  & \keys{`,a} & go to \vmark{a} \\
+			\keys{d,',a} & del until line of \vmark{a}  & \keys{d,`,a} & del until \vmark{a} \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Marks}
+	Deleting the mark \vmark{a} is done via \tcmd{delmarks a}. One can delete a range of marks by \tcmd{delmarks a-d}, or a list of marks by e.g. \tcmd{delmarks afgv} (for the marks \vmark{a},\vmark{f},\vmark{g} and \vmark{v}). \tcmd{delmarks!} will delete all lowercase marks \vmark{a}-\vmark{z}.
+
+	There are several special marks:
+	\begin{itemize}
+		\item \vmark{.}: last change in current buffer.
+		\item \vmark{"}: last exited current buffer.
+		\item \vmark{0}: edited position in last edited file.
+		\item \vmark{1}-\vmark{9}: edited position in previous \vmark{n}-th file.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -490,5 +540,9 @@
 
 \begin{frame}
 	\frametitle{Splits}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Useful Links for Further Reading}
 \end{frame}
 \end{document}
