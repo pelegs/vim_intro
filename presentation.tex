@@ -107,6 +107,8 @@
 	mtn/.style={grammer={xgreen!80!black}},
 	cmd/.style={grammer={xpurple}},
 	mdf/.style={grammer={xorange}},
+	box/.style={thick, rounded corners, draw=#1, fill=#1, fill opacity=0.25, text opacity=1},
+	vector/.style={thick, ->, >=stealth},
 }
 
 \renewcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
@@ -209,7 +211,26 @@
 
 \begin{frame}
 	\frametitle{Brief History}
-	Ed - Vi - Vim.
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[node distance=1.7cm]
+			\node[box={xred}] (Ed) at (0,0) {Ed};
+			\node[box={xblue}, right=of Ed] (Vi) {Vi};
+			\node[box={vimgreen}, right=of Vi] (Vim) {
+				\includegraphics[scale=0.1]{figures/cover/vimlogo.pdf}
+			};
+			\node[draw=black, densely dashed, circle, inner sep=0pt, minimum size=3pt, left=of Ed, align=center, text width=1.2cm] (before) {The before times};
+
+			\draw[vector] (Ed) -- (Vi);
+			\draw[vector] (Vi) -- (Vim);
+			\draw[densely dashed] (before) -- (Ed);
+
+			\tikzset{node distance=7mm}
+			\node[below of=Ed] (Edtxt) {1973, Ken Thompson};
+			\node[above of=Vi] (Vitxt) {1976, Bill Joy};
+			\node[below of=Vim, yshift=-5mm] (Vimtxt) {1991, Bram Moolenaar};
+		\end{tikzpicture}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
