@@ -546,12 +546,13 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
 
 \begin{frame}
 	\frametitle{Registers}
-	There are four special registers:
+	There are several special registers:
 	\begin{itemize}
 		\item \reg{.}: last inserted text.
 		\item \reg{\%}: current file name.
 		\item \reg{:}: most recently executed command.
 		\item \reg{\#}: name of last (alternate) file (try \tcmd{h alternate-file} for more info).
+		\item \reg{=}: expression register (example: in insert mode try: \key{ctrl}+\key{r}+\key{=}, then type \thl{system('ls')} and press \key{\return}).
 	\end{itemize}
 \end{frame}
 
