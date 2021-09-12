@@ -98,9 +98,6 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
     \begin{beamercolorbox}[sep=8pt,center]{author}
       \usebeamerfont{author}Peleg Sapir
     \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=8pt,center]{institute}
-      \usebeamerfont{institute}exocad GmbH
-    \end{beamercolorbox}
     % ------------------------
     \begin{beamercolorbox}[sep=8pt,center]{date}
       \usebeamerfont{date}\insertdate
@@ -118,12 +115,12 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
 \usetikzlibrary{positioning, calc, math, shapes, arrows, decorations.pathreplacing, decorations.text, tikzmark}
 \tikzset{
 	key/.style={draw=black, thick, rounded corners=0.5mm, fill=vimgray, inner sep=1mm, minimum width=5mm, minimum height=5mm},
-	grammer/.style={draw=#1, very thick, fill=#1, fill opacity=0.2, text=#1, text opacity=1, minimum height=7.5mm},
-	rep/.style={grammer={xblue}, rounded corners},
-	opr/.style={grammer={xred}},
-	mtn/.style={grammer={xgreen!80!black}},
-	cmd/.style={grammer={xpurple}},
-	mdf/.style={grammer={xorange}},
+	grammar/.style={draw=#1, very thick, fill=#1, fill opacity=0.2, text=#1, text opacity=1, minimum height=7.5mm},
+	rep/.style={grammar={xblue}, rounded corners},
+	opr/.style={grammar={xred}},
+	mtn/.style={grammar={xgreen!80!black}},
+	cmd/.style={grammar={xpurple}},
+	mdf/.style={grammar={xorange}},
 	box/.style={thick, rounded corners, draw=#1, fill=#1, fill opacity=0.25, text opacity=1},
 	vector/.style={thick, ->, >=stealth},
 }
@@ -271,7 +268,7 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
 
 \begin{frame}
 	\frametitle{Vim Grammer}
-	Generaly speaking, Vim commands can be structure in different forms (here refered to as "rules"\cite{positive}).
+	Generally speaking, Vim commands can be structured in different forms (here refered to as "rules"\cite{positive}).
 
 	The most simple rule is
 	\[
@@ -295,7 +292,7 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Vim Grammer}
+	\frametitle{Vim Grammar}
 	Operators and motions can be preceded by repetitions, i.e.
 	\[
 		\vimcmd{cmd,command} = \vimcmd{rep,n;opr,operator}\ \vimcmd{rep,m;mtn,motion(s)}
@@ -333,7 +330,7 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
 			\key{d} & delete & \key{x} & delete single\\
 			\key{p} & paste  & \key{P} & paste before \\
 			\key{u} & undo   & \key{Ctrl}+\key{r} & redo \\
-			\key{.} & repeat action & \key{;} & repat motion \\
+			\key{.} & repeat action & \key{;} & repeat motion \\
 			\bottomrule
 		\end{tabular}
 	\end{table}
@@ -423,7 +420,7 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
 			\key{h}/\key{\aleft} & left & \key{j}/\key{\adown} & down \\
 			\key{k}/\key{\aup} & up & \key{l}/\key{\aright} & right \\
 			\key{0} & start of line & \key{\$} & end of line \\
-			\key{\^{}} & start of line (text) & \key{\%} & matched paranthesis \\
+			\key{\^{}} & start of line (text) & \key{\%} & matched parenthesis \\
 			\key{H} & top of view & \key{L} & bottom of view \\
 			\key{M} & middle of view & \key{L} & bottom of view \\
 			\key{Ctrl}+\key{y} & scroll screen up & \key{Ctrl}+\key{e} & scroll screen down \\
@@ -466,7 +463,7 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
 
 \begin{frame}
 	\frametitle{The Vim Command Line}
-	Pressing \key{:} in normal mode summons the internal Vim command line (here referred to as \textit{vcl}). Many, many different thigs can be done using this buffer - some of which will be shown later.
+	Pressing \key{:} in normal mode summons the internal Vim command line (here referred to as \textit{vcl}). Many, many different things can be done using this buffer - some of which will be shown later.
 
 	Any shell command can be executed via the vcl, by prepending it with '!', e.g. \tcmd{!ls} will run \thl{ls} in the shell that executed Vim.
 \end{frame}
@@ -611,7 +608,7 @@ url    = {https://takac.github.io/2013/01/30/vim-grammar/}
 
 \begin{frame}
 	\frametitle{Advanced Usage}
-	More advance topics, such as: plugins, \thl{.vimrc} config, vim scripts, custom syntax highlighting and colors, context-aware typing and more - in a future presentation.
+	More advanced topics, such as: plugins, \thl{.vimrc} config, vim scripts, custom syntax highlighting and colors, context-aware typing and more - in a future presentation.
 \end{frame}
 
 \begin{frame}
